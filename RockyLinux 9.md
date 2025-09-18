@@ -16,18 +16,38 @@ hostnamectl set-hostname asterisk.example.com
 
 ## Step 3
 ```bash
-dnf -y install epel-release wget net-tools
+dnf -y install epel-release wget net-tools mpg123
 ```
 ## Step 4
 add repository asterisk
 ```bash
 wget https://ast.tucny.com/repo/tucny-asterisk-el9.repo -O /etc/yum.repos.d/tucny-asterisk-el9.repo
 ```
+## Step 5 
+edit file and asterisk 20 is enabled=1
+```bash
+vi /etc/yum.repos.d/tucny-asterisk-el9.repo
+```
 
+## Step 5
+install asterisk 
+```bash
+dnf -y install asterisk asterisk-curl asterisk-fax asterisk-iax2 asterisk-moh-opsound-wav asterisk-mp3 asterisk-sip asterisk-snmp asterisk-sounds-core-en asterisk-voicemail asterisk-dahdi
+```
 ## Step 5 
 
 ```bash
 firewall-cmd --zone=public --add-service sip --permanent && \
 firewall-cmd --zone=public --add-port=10000-20000/udp --permanent && \
 firewall-cmd --reload
+```
+
+## Step 6
+```bash
+echo -n ";Jahani
+[transport-udp]
+type=transport
+protocol=udp 
+bind=0.0.0.0" >> /etc/asterisk/pjsip.conf && \
+asterisk -rx "pjsip reload"
 ```
