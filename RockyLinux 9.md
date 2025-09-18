@@ -29,12 +29,12 @@ edit file and asterisk 20 is enabled=1
 vi /etc/yum.repos.d/tucny-asterisk-el9.repo
 ```
 
-## Step 5
+## Step 6
 install asterisk 
 ```bash
 dnf -y install asterisk asterisk-curl asterisk-fax asterisk-iax2 asterisk-moh-opsound-wav asterisk-mp3 asterisk-sip asterisk-snmp asterisk-sounds-core-en asterisk-voicemail asterisk-dahdi
 ```
-## Step 5 
+## Step 7
 
 ```bash
 firewall-cmd --zone=public --add-service sip --permanent && \
@@ -42,7 +42,7 @@ firewall-cmd --zone=public --add-port=10000-20000/udp --permanent && \
 firewall-cmd --reload
 ```
 
-## Step 6
+## Step 8
 ```bash
 echo -n ";Jahani
 [transport-udp]
