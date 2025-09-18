@@ -16,10 +16,18 @@ hostnamectl set-hostname asterisk.example.com
 
 ## Step 3
 ```bash
-dnf -y install epel-release wget 
+dnf -y install epel-release wget net-tools
 ```
 ## Step 4
 add repository asterisk
 ```bash
 wget https://ast.tucny.com/repo/tucny-asterisk-el9.repo -O /etc/yum.repos.d/tucny-asterisk-el9.repo
+```
+
+## Step 5 
+
+```bash
+firewall-cmd --zone=public --add-service sip --permanent && \
+firewall-cmd --zone=public --add-port=10000-20000/udp --permanent && \
+firewall-cmd --reload
 ```
