@@ -16,7 +16,8 @@ hostnamectl set-hostname asterisk.example.com
 
 ## Step 3
 ```bash
-dnf -y install epel-release wget net-tools mpg123
+dnf -y install epel-release wget net-tools mpg123 tcpdump traceroute
+
 ```
 ## Step 4
 add repository asterisk
