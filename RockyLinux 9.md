@@ -16,7 +16,8 @@ hostnamectl set-hostname asterisk.example.com
 
 ## Step 3
 ```bash
-dnf -y install epel-release wget net-tools mpg123 tcpdump traceroute
+dnf copr enable irontec/sngrep
+dnf -y install epel-release wget net-tools mpg123 tcpdump traceroute sngrep
 
 ```
 ## Step 4
