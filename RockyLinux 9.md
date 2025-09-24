@@ -53,4 +53,5 @@ protocol=udp
 bind=0.0.0.0" >> /etc/asterisk/pjsip.conf && \
 asterisk -rx "pjsip reload"
 ```
-آموزش بخاطر عرشیا
+آموزش بخاطر عرشی
+ا
