@@ -29,7 +29,7 @@ Asterisk Servers	Two internal VoIP servers (192.168.10.10, 192.168.10.11) for vo
 RTPengine	Handles media relay and SRTP bridging
 Monitoring/Analytics Stack	Homer Collector, ELK (Elastic Stack), Prometheus/Grafana for metrics
 Traffic flow:
-
+```
 User Agent (Internet)
 
 │ (TLS / UDP)
@@ -43,7 +43,7 @@ Kamailio SBC (DMZ)
 ▼
 
 Asterisk #1, #2 ── RTP handled via RTPengine
-
+```
 2. Security Mechanisms & Layers
 Implemented security layers:
 
