@@ -245,3 +245,26 @@ K -->|SIP Traces| H[Homer]
 K -->|Metrics| P[Prometheus] --> G[Grafana]
 
 ```
+## 🧩 11. Launch Commands
+```bash
+docker-compose up -d
+
+docker ps
+
+docker logs -f kamailio_sbc
+```
+# To test:
+
+```bash
+sipsak -s sip:user@1.2.3.4 -vvv
+```
+## 🏁 12. Final Summary
+✅ Kamailio acts as a secure session border with authentication, flood prevention and logging.
+
+✅ Dual Asterisk provides high availability and load sharing.
+
+✅ Complete monitoring & telemetry via Homer + ELK + Grafana.
+
+✅ Entire environment runs in Docker under an isolated network (sbc_net).
+
+
