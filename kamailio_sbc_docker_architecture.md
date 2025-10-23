@@ -1,37 +1,36 @@
 # 🧭 Kamailio SBC – Full Dockerized Architecture & Monitoring Stack
 
-**Date:** 2025-10-23  
+**Date:** 2025‑10‑23  
 **Author:** GPT‑5  
-**Document Type:** Technical Implementation Manual  
 **Version:** 1.0  
 
 ---
 
-## 🔷 Table of Contents
-1. [Initial Design Summary](#1-initial-design-summary)  
-2. [Security Mechanisms & Layers](#2-security-mechanisms--layers)  
-3. [Advanced Identification Mechanisms](#3-advanced-identification-mechanisms)  
-4. [Centralized Monitoring & Logging](#4-centralized-monitoring--logging)  
-5. [Full Docker Architecture](#5-full-docker-architecture)  
-6. [Docker Compose File](#6-docker-compose-file)  
-7. [Monitoring Components](#7-monitoring-components)  
-8. [Security in Production](#8-security-in-production)  
-9. [Launch Commands](#9-launch-commands)  
-10. [Architecture Diagrams](#10-architecture-diagrams)  
-11. [Summary](#11-summary)
+## 🔷 1. Initial Design Summary
 
----
+**Topology Overview**
+```
+Internet Users → Kamailio SBC (DMZ: PublicIP 1.2.3.4)
 
-## 1. Initial Design Summary
+↓
 
-Base architecture for SBC deployment:
+├── Asterisk #1 (192.168.10.10)
 
-| Element | Description |
-|----------|--------------|
-| **Users (Internet)** | Softphones, SIP Clients behind NAT, or SIP Trunks |
-| **SBC (Kamailio)** | Deployed in DMZ, handles SIP/TLS, NAT, authentication, and routing |
-| **Asterisk Servers** | Two internal VoIP servers (`192.168.10.10`, `192.168.10.11`) for voice handling |
-| **RTPengine** | Handles media relay and SRTP bridging |
-| **Monitoring/Analytics Stack** | Homer Collector, ELK (Elastic Stack), Prometheus/Grafana for metrics |
+└── Asterisk #2 (192.168.10.11)
 
-Traffic flow:
+Kamailio Role: Security, Load Balancing, NAT handling
+RTPengine: Media relay (SRTP, NAT Fix)
+Asterisk Cluster: Call Control and Media handling
+```
+
+## 🛡️ 2. Security Layers (Multi‑Layer Defense)
+
+|  Layer | Tool / Module	  | Description  |
+|---|---|---|
+| Anti‑Flood	  | pike  | Limits requests rate per IP  |
+| Static Blacklist	  |permissions	   |  Blocking fixed IPs in MySQL address table |
+| SIP User‑Agent Filtering	  | sanity / custom route	  | Blocks scanners like friendly‑scanner  |
+|  Authentication	 |  auth, auth_db	 |Digest Auth via credential DB   |
+| Custom Header Auth	  |X‑Company‑Signature	   | Additional check for official clients  |
+|  Transport Security	 | TLS / mTLS	  | Optional certificate‑based authentication  |
+| SRTP	  | rtpengine  | Encrypted media path  |
